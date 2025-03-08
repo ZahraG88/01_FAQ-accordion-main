@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "WorkSans";
+  src: url(./assets/fonts/WorkSans-VariableFont_wght.ttf);
+}
+:root {
+  --color1: hsl(0, 0%, 100%);
+  --color2: hsl(275, 100%, 97%);
+  --color3: hsl(292, 16%, 49%);
+  --color4: hsl(292, 42%, 14%);
+  --color5: #ad24f0;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: WorkSans, serif;
+}
+
+body {
+  background: var(--color2);
+  min-height: 100vh;
+  color: var(--color4);
+}
+/* Pour Inserer la première partie du background  */
+/* ***********START*************** */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%; /* Fixe la hauteur à 30% */
+  background-image: url(./assets/images/background-pattern-desktop.svg); /* Image de fond */
+  background-size: cover; /* Couvre toute la zone */
+  background-position: center; /* Centre l'image */
+  z-index: 0; /* Place l'image en arrière-plan */
+}
+
+/* ***********END*************** */
+
+.FAQ_Container {
+  background: var(--color1);
+  padding: 3rem 0;
+  margin: 4rem auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  z-index: 1;
+  position: relative;
+}
+.titleFAQ {
+  display: flex;
+  align-items: center;
+}
+.titleFAQ img {
+  max-width: 50%;
+  height: auto;
+  margin-left: 50px;
+}
+
+.titleFAQ h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 3rem;
+}
+.QR_Container {
+  margin: 0 2rem;
+}
+.QR {
+  border-bottom: 2px solid var(--color2);
+}
+.QR:nth-last-child(1) {
+  border-bottom: 2px solid transparent;
+}
+
+.question {
+  padding: 1rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-areas: "h1 img";
+  align-items: center;
+  position: relative;
+}
+
+.button_active {
+  cursor: pointer;
+  padding: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+.button_inactive {
+  cursor: pointer;
+  padding: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 90%;
+  cursor: pointer;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0 1.2rem;
+  color: var(--color3);
+  line-height: 1rem;
+  width: 90%;
+}
+.response {
+  display: none;
+  padding-bottom: 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+}
+.button_inactive {
+  display: none;
+}
+/* Quand la classe "active" est ajoutée, la réponse devient visible avec une animation */
+.QR.active .response {
+  max-height: 300px; /* Ajuste selon la hauteur que tu veux */
+  display: block;
+}
+
+.QR.active h2 {
+  color: var(--color5);
+}
+.QR.active p {
+  animation: para 2s linear;
+  position: relative;
+}
+
+@keyframes para {
+  0% {
+    top: 0;
+    transform: translateY(20px); /* Déplace le texte de 20 pixels vers le bas */
+  }
+  50% {
+    top: 50%; /* Change la position au milieu pour créer un effet de balancement */
+    transform: translateY(0); /* Réinitialise la translation */
+  }
+  100% {
+    top: 100%; /* Déplace le texte vers le bas */
+    transform: translateY(0);
+  }
+}
+.QR.active img {
+  transform: rotate(180deg);
+}
+.button_inactive {
+  transform: rotate(0deg);
+}
+
+/* On peut ajouter un effet de rotation lors de l'apparition de l'icône moins */
+.QR.active .button_inactive {
+  transform: rotate(180deg);
+}
+@media screen and (max-width: 900px) {
+  .titleFAQ h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1.5rem;
+  }
+
+  .FAQ_Container {
+    padding: 1.5rem 0;
+    margin: 2rem auto;
+  }
+  .QR_Container {
+    margin: 0 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    padding-bottom: 0.7rem;
+    line-height: 0.9rem;
+  }
+}
